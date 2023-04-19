@@ -8,7 +8,7 @@ const Entregador = connection.define(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [0, 255],
+        len: [0, 100],
       },
     },
     telefone: {

@@ -1,6 +1,5 @@
 const { Router } = require("express");
 const Entregador = require("../database/entregador");
-const { route } = require("./pedidos");
 
 const router = Router();
 
@@ -45,6 +44,25 @@ router.put("/entregadores/:id", async (req, res) => {
   const entregador = await Entregador.findByPk(req.params.id);
 
   try {
-  } catch (err) {}
+    if (entregador) {
+      await Entregador.update(
+        { nome, telefone },
+        { where: { id: req.params.id } }
+      );
+      res.status(200).json({ message: "Entregador atualizado com sucesso." });
+    } else res.status(404).json({ message: "Entregador não encontrado" });
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
 });
+
+//Excluir Entregador
+router.delete("/entregador/:id", async (req, res) => {
+  const entregador = await Entregador.findByPk(req.params.id);
+  if (entregador) {
+    await entregador.destroy();
+    res.status(200).json({ message: "Entregador excluido" });
+  } else res.status(404).json({ message: "Entregador não encontrado" });
+});
+
 module.exports = router;

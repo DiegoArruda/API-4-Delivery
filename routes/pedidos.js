@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const Pedido = require("../database/pedido");
+const { Op } = require("sequelize");
 
 const router = Router();
 
@@ -68,6 +69,14 @@ router.delete("/pedidos/:id", async (req, res) => {
     await pedido.destroy();
     res.json({ message: "O Pedido foi deletado" });
   } else res.status(404).json({ message: "Pedido não encontrado" });
+});
+
+// Rota para filtrar pedidos por descrição
+router.get("/pedidos/descricao/:descricao", async (req, res) => {
+  const pedidos = await Pedido.findAll({
+    where: { descricao: { [Op.like]: `%${req.params.descricao}%` } },
+  });
+  res.json(pedidos);
 });
 
 module.exports = router;
