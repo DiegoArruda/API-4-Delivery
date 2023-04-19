@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const Entregador = require("../database/entregador");
+const { Op } = require("sequelize");
 
 const router = Router();
 
@@ -38,6 +39,30 @@ router.get("/entregadores/:id", async (req, res) => {
   }
 });
 
+// Rota para filtrar entregadores por nome
+router.get("/entregadores/nome/:nome", async (req, res) => {
+  const entregadores = await Entregador.findAll({
+    where: { nome: { [Op.like]: `%${req.params.nome}%` } },
+  });
+  if (entregadores) {
+    res.json(entregadores);
+  } else res.json(404).json({ message: "Nome não encontrado" });
+});
+
+// Rota para filtrar entregadores por telefone
+router.get("/entregadores/telefone/:telefone", async (req, res) => {
+  const entregadores = await Entregador.findAll({
+    where: { telefone: { [Op.like]: `%${req.params.telefone}` } },
+  });
+  try {
+    if (entregadores) {
+      res.json(entregadores);
+    } else res.json(404).json({ message: "Número não encontrado" });
+  } catch (err) {
+    res.json(500).json({ message: err.message });
+  }
+});
+
 //Atualizar Entregador
 router.put("/entregadores/:id", async (req, res) => {
   const { nome, telefone } = req.body;
@@ -57,12 +82,21 @@ router.put("/entregadores/:id", async (req, res) => {
 });
 
 //Excluir Entregador
-router.delete("/entregador/:id", async (req, res) => {
+router.delete("/entregadores/:id", async (req, res) => {
   const entregador = await Entregador.findByPk(req.params.id);
   if (entregador) {
     await entregador.destroy();
     res.status(200).json({ message: "Entregador excluido" });
   } else res.status(404).json({ message: "Entregador não encontrado" });
 });
+
+//Hard-delete Entregador (Mais opções para isso)
+/* router.delete("/entregadores/:id", async (req, res) => {
+  const entregador = await Entregador.findByPk(req.params.id);
+  if (entregador) {
+    await entregador.destroy({ force: true });
+    res.status(200).json({ message: "Entregador excluido" });
+  } else res.status(404).json({ message: "Entregador não encontrado" });
+}); */
 
 module.exports = router;
