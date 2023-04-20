@@ -1,8 +1,11 @@
 /**
  * @swagger
+ * 
+ * 
  * tags:
  *   name: Pedidos
  *   description: Operações relacionadas a Pedidos
+ * 
  *
  * /pedidos:
  *   post:
@@ -69,6 +72,7 @@
  *         schema:
  *           type: integer
  *         required: true
+ * 
  *         description: ID do pedido a ser obtido
  *     responses:
  *       200:
@@ -104,6 +108,89 @@
  *         description: Erro interno do servidor
  */
 
+/**
+ * @swagger
+ * /pedidos/{id}:
+ *   put:
+ *    summary: Atualizar pedido pelo ID
+ *    tags: [Pedidos]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: integer
+ *        required: true
+ *        description: ID do pedido a ser atualizado
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            properties:
+ *               descricao:
+ *                 type: string
+ *                 description: Descrição do pedido
+ *                 example: Pedido de pizza de calabresa
+ *               endereco_entrega:
+ *                 type: string
+ *                 description: Endereço de entrega do pedido
+ *                 example: Rua das Flores, 123
+ *               urgencia:
+ *                 type: string
+ *                 description: Urgência do pedido
+ *                 example: alta
+ *    responses:
+ *       200:
+ *         description: Pedido editado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: ID do pedido editado
+ *                   example: 1
+ *                 descricao:
+ *                   type: string
+ *                   description: Descrição do pedido editado
+ *                   example: Pedido de pizza de calabresa
+ *                 endereco_entrega:
+ *                   type: string
+ *                   description: Endereço de entrega do pedido editado
+ *                   example: Rua das Flores, 123
+ *                 urgencia:
+ *                   type: string
+ *                   description: Urgência do pedido editado
+ *                   example: alta
+ *                 entregadorId:
+ *                   type: integer
+ *                   description: ID do entregador vinculado ao pedido editado
+ *                   example: 1
+ *       404:
+ *         description: Pedido não encontrado
+ *       500:
+ *         description: Erro interno do servidor
+ * 
+ * 
+  *   delete:
+ *     summary: Excluir pedido pelo ID
+ *     tags: [Pedidos]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID do pedido
+ *
+ *     responses:
+ *       200:
+ *         description: Pedido excluido
+ *       404:
+ *         description: Pedido não encontrado 
+ */
+
 const { Router } = require("express");
 const Pedido = require("../database/pedido");
 const { Op } = require("sequelize");
@@ -111,7 +198,7 @@ const Entregador = require("../database/entregador");
 
 const router = Router();
 
-//Adicionar um novo pedido
+//Adicionar um novo pedido ok
 router.post("/pedidos", async (req, res) => {
   const { descricao, endereco_entrega, urgencia } = req.body;
   try {

@@ -1,20 +1,4 @@
-/**
- * @swagger
- * tags:
- *   name: Usuários
- *   description: Operações relacionadas a usuários
- */
 
-/**
- * @swagger
- * /usuarios:
- *   get:
- *     tags: [Usuários]
- *     summary: Lista todos os usuários
- *     responses:
- *       '200':
- *         description: Lista de usuários
- */
 
 const { Router } = require("express");
 const Entregador = require("../database/entregador");
