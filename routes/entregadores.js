@@ -1,3 +1,4 @@
+
 /**
  * @swagger
  * tags:
@@ -101,6 +102,7 @@
  *       500:
  *         description: Erro interno do servidor
  */
+
 
 /**
  * @swagger
