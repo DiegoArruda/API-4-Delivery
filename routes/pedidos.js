@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const Pedido = require("../database/pedido");
 const { Op } = require("sequelize");
+const Entregador = require("../database/entregador");
 
 const router = Router();
 
@@ -22,7 +23,7 @@ router.post("/pedidos", async (req, res) => {
 //Lista de pedidos
 router.get("/pedidos", async (req, res) => {
   try {
-    const listaPedidos = await Pedido.findAll();
+    const listaPedidos = await Pedido.findAll({ include: [Entregador] });
     res.json(listaPedidos);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -31,8 +32,10 @@ router.get("/pedidos", async (req, res) => {
 
 //Procura de pedidos
 router.get("/pedidos/:id", async (req, res) => {
-  const { id } = req.params;
-  const pedido = await Pedido.findByPk(id);
+  const pedido = await Pedido.findOne({
+    where: { id: req.params.id },
+    include: [Entregador],
+  });
 
   try {
     if (pedido) {

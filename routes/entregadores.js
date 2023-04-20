@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const Entregador = require("../database/entregador");
 const { Op } = require("sequelize");
+const Pedido = require("../database/pedido");
 
 const router = Router();
 
@@ -88,6 +89,29 @@ router.delete("/entregadores/:id", async (req, res) => {
     await entregador.destroy();
     res.status(200).json({ message: "Entregador excluido" });
   } else res.status(404).json({ message: "Entregador não encontrado" });
+});
+
+router.put("/entregadores/:id/pedidos/:idPedido", async (req, res) => {
+  const { id, idPedido } = req.params;
+  try {
+    const entregador = await Entregador.findOne({ where: { id } });
+    const pedido = await Pedido.findOne({
+      where: { id: idPedido },
+      include: [Entregador],
+    });
+
+    if (entregador && pedido) {
+      pedido.set("EntregadorId", id);
+      await pedido.save();
+      res
+        .status(200)
+        .json({ message: "Pedido vinculado ao entregador com sucesso!" });
+    } else {
+      res.status(404).json({ message: "Entregador ou pedido não encontrado!" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
 //Hard-delete Entregador (Mais opções para isso)

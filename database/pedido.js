@@ -30,7 +30,4 @@ const Pedido = connection.define(
   { paranoid: true, deletedAt: "destroyTime" }
 );
 
-Entregador.hasMany(Pedido);
-Pedido.hasOne(Entregador);
-
 module.exports = Pedido;

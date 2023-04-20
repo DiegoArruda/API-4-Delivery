@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { connection } = require("./database");
+const Pedido = require("./pedido");
 
 const Entregador = connection.define(
   "Entregador",
@@ -22,5 +23,7 @@ const Entregador = connection.define(
   },
   { paranoid: true, deletedAt: "destroyTime" }
 );
+Entregador.hasMany(Pedido);
+Pedido.belongsTo(Entregador);
 
 module.exports = Entregador;
