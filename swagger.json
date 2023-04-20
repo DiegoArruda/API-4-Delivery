@@ -1,0 +1,30 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Minha API",
+    "description": "Descrição da minha API"
+  },
+  "host": "localhost:4000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "usuarios",
+      "description": "Operações relacionadas a usuários"
+    }
+  ],
+  "schemes": ["http", "https"],
+  "paths": {
+    "/usuarios": {
+      "get": {
+        "tags": ["usuarios"],
+        "summary": "Lista todos os usuários",
+        "responses": {
+          "200": {
+            "description": "Lista de usuários"
+          }
+        }
+      }
+    }
+  }
+}
