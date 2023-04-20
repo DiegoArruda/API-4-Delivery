@@ -1,3 +1,144 @@
+/**
+ * @swagger
+ * tags:
+ *   name: Entregadores
+ *   description: Operações relacionadas a Entregadores
+ *
+ * /entregadores:
+ *   post:
+ *     summary: Cria um novo entregador
+ *     tags: [Entregadores]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nome:
+ *                 type: string
+ *                 description: Nome do entregador
+ *                 example: Cebola
+ *               telefone:
+ *                 type: string
+ *                 description: Telefone do entregador
+ *                 example: 998407253
+ *     responses:
+ *       201:
+ *         description: Entregador cadastrado com sucesso
+ *         content:
+ *           application/json:
+ *            schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: ID do entregador cadastrado
+ *                   example: 1
+ *                 nome:
+ *                   type: string
+ *                   description: Nome do entregador
+ *                   example: Cebola
+ *                 telefone:
+ *                   type: string
+ *                   description: Telefone do entregador
+ *                   example: 998407253
+ *       500:
+ *         description: Erro interno do servidor
+ */
+/**
+ * @swagger
+ * /entregadores:
+ *   get:
+ *     summary: Lista de todos os entregadores
+ *     tags: [Entregadores]
+ *     responses:
+ *       200:
+ *         description: Lista dos entregadores
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *
+ */
+/**
+ * @swagger
+ * /entregadores/{id}:
+ *   get:
+ *     summary: Obtém um entregador pelo ID
+ *     tags: [Entregadores]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID do entregador a ser obtido
+ *     responses:
+ *       200:
+ *         description: Entregador encontrado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: ID do entregador obtido
+ *                   example: 1
+ *                 nome:
+ *                   type: string
+ *                   description: Nome do entregador
+ *                   example: Cebola
+ *                 telefone:
+ *                   type: string
+ *                   description: Telefone do entregador
+ *                   example: 9973222856
+ *       404:
+ *         description: Entregador não encontrado
+ *       500:
+ *         description: Erro interno do servidor
+ */
+
+
+/**
+ * @swagger
+ * /entregadores/nome/{nome}:
+ *   get:
+ *     summary: Encontra um entregador pelo nome
+ *     tags: [Entregadores]
+ *     parameters:
+ *       - in: path
+ *         name: nome
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Nome do entregador a ser obtido
+ *     responses:
+ *       200:
+ *         description: Nome encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: ID do entregador
+ *                   example: 1
+ *                 nome:
+ *                   type: string
+ *                   description: Nome do entregador
+ *                   example: Cebola
+ *                 telefone:
+ *                   type: string
+ *                   description: Telefone do entregador
+ *                   example: 987238873
+ *       404:
+ *         description: Entregador não encontrado
+ *       500:
+ *         description: Erro interno do servidor
+ */
 
 const { Router } = require("express");
 const Entregador = require("../database/entregador");

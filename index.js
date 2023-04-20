@@ -18,7 +18,6 @@ authenticate(connection);
 const rotaEntregadores = require("./routes/entregadores");
 const rotaPedidos = require("./routes/pedidos");
 
-// framework SWAGGER para documentação
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -40,6 +39,8 @@ const options = {
 //Juntar ao app as rotas
 app.use(rotaEntregadores);
 app.use(rotaPedidos);
+const spacs = swaggerjsdoc(options);
+app.use("/api-docs", swaggerui.serve, swaggerui.setup(spacs));
 
 // framework SWAGGER para documentação
 const spacs = swaggerjsdoc(options);
