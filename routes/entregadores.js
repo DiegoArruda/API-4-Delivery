@@ -1,4 +1,3 @@
-
 /**
  * @swagger
  * tags:
@@ -140,6 +139,7 @@
  *       500:
  *         description: Erro interno do servidor
  */
+
 const { Router } = require("express");
 const Entregador = require("../database/entregador");
 const { Op } = require("sequelize");
@@ -233,6 +233,8 @@ router.delete("/entregadores/:id", async (req, res) => {
   } else res.status(404).json({ message: "Entregador não encontrado" });
 });
 
+
+// Vincular Pedido ao Entregador
 router.put("/entregadores/:id/pedidos/:idPedido", async (req, res) => {
   const { id, idPedido } = req.params;
   try {

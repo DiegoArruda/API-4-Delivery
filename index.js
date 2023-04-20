@@ -42,6 +42,10 @@ app.use(rotaPedidos);
 const spacs = swaggerjsdoc(options);
 app.use("/api-docs", swaggerui.serve, swaggerui.setup(spacs));
 
+// framework SWAGGER para documentação
+const spacs = swaggerjsdoc(options);
+app.use("/api-docs", swaggerui.serve, swaggerui.setup(spacs));
+
 app.listen(4000, () => {
   // Gerar as tabelas a partir do model
   //Force = apaga tudo e recria as tabelas

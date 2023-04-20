@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { connection } = require("./database");
-const Entregador = require("./entregador");
+
 
 const Pedido = connection.define(
   "Pedido",
