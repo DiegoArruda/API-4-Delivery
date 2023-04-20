@@ -59,8 +59,6 @@
  *           application/json:
  *             schema:
  *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Entregadores'
  *
  */
 /**
