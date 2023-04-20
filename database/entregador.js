@@ -17,7 +17,7 @@ const Entregador = connection.define(
       unique: true,
       allowNull: false,
       validate: {
-        isNumeric: true,
+        matches: /^[\d-]+$/,
       },
     },
   },
@@ -25,5 +25,6 @@ const Entregador = connection.define(
 );
 Entregador.hasMany(Pedido);
 Pedido.belongsTo(Entregador);
+
 
 module.exports = Entregador;
