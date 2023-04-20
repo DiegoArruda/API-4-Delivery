@@ -59,6 +59,48 @@
 
 /**
  * @swagger
+
+ * /pedidos:
+ *   get:
+ *     summary: Listar todos os pedidos
+ *     tags: [Pedidos]
+ *     responses:
+ *       200:
+ *         description: Lista de Pedidos
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: Lista de Pedidos
+ *                   example: 1
+ *                 descricao:
+ *                   type: string
+ *                   description: Descrição do pedido 
+ *                   example: Pedido de pizza de calabresa
+ *                 endereco_entrega:
+ *                   type: string
+ *                   description: Endereço de entrega do pedido
+ *                   example: Rua das Flores, 123
+ *                 urgencia:
+ *                   type: string
+ *                   description: Urgência do pedido realizado
+ *                   example: alta
+ *                 entregadorId:
+ *                   type: integer
+ *                   description: ID do entregador vinculado ao pedido editado
+ *                   example: 1
+ *       404:
+ *         description: Pedido não encontrado
+ *       500:
+ *         description: Erro interno do servidor * 
+ *                   
+ */
+
+/**
+ * @swagger
  * /pedidos/{id}:
  *   get:
  *     summary: Obtém um pedido pelo ID
@@ -102,6 +144,55 @@
  *         description: Pedido não encontrado
  *       500:
  *         description: Erro interno do servidor
+ */
+
+/**
+ * @swagger
+
+ * /pedidos/descricao/{descricao}:
+ *   get:
+ *     summary: Obtém um pedido pela descrição
+ *     tags: [Pedidos]
+ *     parameters:
+ *       - in: path
+ *         name: Descrição
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Descrição do pedido a ser obtido
+ *     responses:
+ *       200:
+ *         description: Pedido obtido com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: ID do pedido editado
+ *                   example: 1
+ *                 descricao:
+ *                   type: string
+ *                   description: Descrição do pedido editado
+ *                   example: Pedido de pizza de calabresa
+ *                 endereco_entrega:
+ *                   type: string
+ *                   description: Endereço de entrega do pedido editado
+ *                   example: Rua das Flores, 123
+ *                 urgencia:
+ *                   type: string
+ *                   description: Urgência do pedido realizado
+ *                   example: alta
+ *                 entregadorId:
+ *                   type: integer
+ *                   description: ID do entregador vinculado ao pedido editado
+ *                   example: 1
+ *       404:
+ *         description: Pedido não encontrado
+ *       500:
+ *         description: Erro interno do servidor * 
+ *                   
  */
 
 const { Router } = require("express");
