@@ -140,6 +140,109 @@
  *         description: Erro interno do servidor
  */
 
+/**
+ /**
+/**
+ * @swagger
+ * /entregadores/{id}:
+ *   put:
+ *    summary: Atualizar pedido pelo ID
+ *    tags: [Entregadores]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: integer
+ *        required: true
+ *        description: ID do entregador a ser atualizado
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            properties:
+ *               nome:
+ *                 type: string
+ *                 description: Descrição do entregadores
+ *                 example: nome:joão Da Silva
+     
+ *               telefone:
+ *                 type: string
+ *                 description: Numero do Entregador
+ *                 example: (99)- 9-9999-9999
+ *              
+ *    responses:
+ *       200:
+ *         telefone: entregador editado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 
+ *                 nome:
+ *                   type: string
+ *                   description: Descrição do entregador editado
+ *                   example: Joao
+ *                 telefone:
+ *                   type: string
+ *                   description: Telefone do entregador
+ *                   example: 987238873
+
+ *       404:
+ *         description: Entregador não encontrado
+ *       500:
+ *         description: Erro interno do servidor
+ *   
+ 
+
+  *   delete:
+ *     summary: Excluir entregador pelo ID
+ *     tags: [Entregadores]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID do entregador
+ *
+ *     responses:
+ *       200:
+ *         description: entregador excluido
+ *       404:
+ *         description: Erro interno do servidor
+ *  */
+/**
+ * @swagger
+ * /entregadores/{id}/pedidos/{pedidoId}:
+ *   put:
+ *     summary: Vincula um pedido existente a um entregador
+ *     tags: [Entregadores]
+ *       
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID do entregador a ser vinculado
+ *         schema:
+ *           type: integer
+ *       - name: pedidoId
+ *         in: path
+ *         required: true
+ *         description: ID do pedido a ser vinculado
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       204:
+ *         description: Pedido vinculado ao entregador com sucesso
+ *       404:
+ *         description: Entregador ou pedido não encontrado
+ *       500:
+ *         description: Erro interno do servidor
+ */
+
+
 const { Router } = require("express");
 const Entregador = require("../database/entregador");
 const { Op } = require("sequelize");
