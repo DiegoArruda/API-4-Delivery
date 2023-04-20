@@ -1,5 +1,7 @@
 const { Router } = require("express");
 const Pedido = require("../database/pedido");
+const { Op } = require("sequelize");
+const Entregador = require("../database/entregador");
 
 const router = Router();
 
@@ -21,7 +23,7 @@ router.post("/pedidos", async (req, res) => {
 //Lista de pedidos
 router.get("/pedidos", async (req, res) => {
   try {
-    const listaPedidos = await Pedido.findAll();
+    const listaPedidos = await Pedido.findAll({ include: [Entregador] });
     res.json(listaPedidos);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -30,8 +32,10 @@ router.get("/pedidos", async (req, res) => {
 
 //Procura de pedidos
 router.get("/pedidos/:id", async (req, res) => {
-  const { id } = req.params;
-  const pedido = await Pedido.findByPk(id);
+  const pedido = await Pedido.findOne({
+    where: { id: req.params.id },
+    include: [Entregador],
+  });
 
   try {
     if (pedido) {
@@ -40,6 +44,37 @@ router.get("/pedidos/:id", async (req, res) => {
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
+});
+
+// Rota para filtrar pedidos por descrição
+router.get("/pedidos/descricao/:descricao", async (req, res) => {
+  const pedidos = await Pedido.findAll({
+    where: { descricao: { [Op.like]: `%${req.params.descricao}%` } },
+  });
+  if (pedidos) {
+    res.json(pedidos);
+  } else res.status(404).json({ message: "Descrição não encontrada" });
+});
+
+// Rota para filtrar pedidos por endereço de entrega
+router.get("/pedidos/endereco_entrega/:endereco", async (req, res) => {
+  const pedidos = await Pedido.findAll({
+    //Com o Op é possível pesquisar por apenas caracteres contidos
+    where: { endereco_entrega: { [Op.like]: `%${req.params.endereco}%` } },
+  });
+  if (pedidos) {
+    res.json(pedidos);
+  } else res.status(404).json({ message: "Não há pedidos com esse endereço" });
+});
+
+// Rota para filtrar pedidos por urgência
+router.get("/pedidos/urgencia/:urgencia", async (req, res) => {
+  const pedidos = await Pedido.findAll({
+    where: { urgencia: req.params.urgencia },
+  });
+  if (pedidos) {
+    res.json(pedidos);
+  } else res.status(404).json({ message: "Não há pedidos com essa urgencia" });
 });
 
 //Atualizar pedido
