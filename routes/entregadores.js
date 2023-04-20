@@ -213,7 +213,7 @@
  *       404:
  *         description: Erro interno do servidor
  *  */
-/**
+/**  
  * @swagger
  * /entregadores/{id}/pedidos/{pedidoId}:
  *   put:
