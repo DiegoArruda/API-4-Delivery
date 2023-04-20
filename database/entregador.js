@@ -16,11 +16,12 @@ const Entregador = connection.define(
       unique: true,
       allowNull: false,
       validate: {
-        isNumeric: true,
+        matches: /^[\d-]+$/,
       },
     },
   },
   { paranoid: true, deletedAt: "destroyTime" }
 );
+
 
 module.exports = Entregador;
