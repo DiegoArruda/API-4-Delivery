@@ -1,0 +1,417 @@
+{
+	"info": {
+		"_postman_id": "4ceeffa3-c6d0-417e-bf51-bc89ab376baf",
+		"name": "delivery_app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26870895",
+		"_collection_link": "https://martian-zodiac-18823.postman.co/workspace/My-Workspace~74b16b35-72af-4ade-8f13-790b879f031b/collection/26870895-4ceeffa3-c6d0-417e-bf51-bc89ab376baf?action=share&creator=26870895&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Pedidos",
+			"item": [
+				{
+					"name": "Adicionar Pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Pizza calabresa média\",\r\n    \"endereco_entrega\": \"Rua A\",\r\n    \"urgencia\": \"baixa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista de Pedidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Achar Pedido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/pedidos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Pedido",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Pizza M&M\",\r\n    \"endereco_entrega\": \"Rua Z\",\r\n    \"urgencia\": \"alta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/pedidos/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"pedidos",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Pedido",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/pedidos/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"pedidos",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtragem por descrição",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/pedidos/descricao/pequena",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"pedidos",
+								"descricao",
+								"pequena"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtragem por endereço",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/pedidos/endereco_entrega/Rua X",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"pedidos",
+								"endereco_entrega",
+								"Rua X"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtragem por urgência",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/pedidos/urgencia/media",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"pedidos",
+								"urgencia",
+								"media"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vincular Pedido a entregador",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/1/entregador/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"1",
+								"entregador",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Entregadores",
+			"item": [
+				{
+					"name": "Adicionar Entregador",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Cebola\",\r\n    \"telefone\": \"987654321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/entregadores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"entregadores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista de Entregadores",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/entregadores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"entregadores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Achar Entregador",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/entregadores/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"entregadores",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Entregador",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Alana\",\r\n    \"telefone\": \"8797790879\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/entregadores/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"entregadores",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Entregador",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/entregadores/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"entregadores",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtragem por nome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/entregadores/nome/Tia",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"entregadores",
+								"nome",
+								"Tia"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtragem por telefone",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/entregadores/telefone/888888888888888888888888888",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"entregadores",
+								"telefone",
+								"888888888888888888888888888"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vincular Pedido a entregador",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/entregadores/5/pedidos/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"entregadores",
+								"5",
+								"pedidos",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
