@@ -104,6 +104,100 @@
  *         description: Erro interno do servidor
  */
 
+/**
+ * @swagger
+ * /pedidos/urgencia/{urgencia}:
+ *   get:
+ *     summary: Obtém um pedido pela urgência
+ *     tags: [Pedidos]
+ *     parameters:
+ *       - in: path
+ *         name: urgencia
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: urgencia do pedido a ser obtido
+ *     responses:
+ *       200:
+ *         description: Pedido obtido com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: ID do pedido obtido
+ *                   example: 1
+ *                 descricao:
+ *                   type: string
+ *                   description: Descrição do pedido obtido
+ *                   example: Pedido de pizza de calabresa
+ *                 endereco_entrega:
+ *                   type: string
+ *                   description: Endereço de entrega do pedido obtido
+ *                   example: Rua das Flores, 123
+ *                 urgencia:
+ *                   type: string
+ *                   description: Urgência do pedido obtido
+ *                   example: alta
+ *                 entregadorId:
+ *                   type: integer
+ *                   description: ID do entregador vinculado ao pedido obtido
+ *                   example: 1
+ *       404:
+ *         description: Não há pedidos com essa urgencia
+ *       500:
+ *         description: Erro interno do servidor
+ */
+
+/**
+ * @swagger
+ * /pedidos/endereco_entrega/{endereco}:
+ *   get:
+ *     summary: Obtém um pedido pelo endereço
+ *     tags: [Pedidos]
+ *     parameters:
+ *       - in: path
+ *         name: endereco
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: endereco do pedido a ser obtido
+ *     responses:
+ *       200:
+ *         description: Pedido obtido com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: ID do pedido obtido
+ *                   example: 1
+ *                 descricao:
+ *                   type: string
+ *                   description: Descrição do pedido obtido
+ *                   example: Pedido de pizza de calabresa
+ *                 endereco_entrega:
+ *                   type: string
+ *                   description: Endereço de entrega do pedido obtido
+ *                   example: Rua das Flores, 123
+ *                 urgencia:
+ *                   type: string
+ *                   description: Urgência do pedido obtido
+ *                   example: alta
+ *                 entregadorId:
+ *                   type: integer
+ *                   description: ID do entregador vinculado ao pedido obtido
+ *                   example: 1
+ *       404:
+ *         description: Não há pedidos com esse endereço
+ *       500:
+ *         description: Erro interno do servidor
+ */
+
 const { Router } = require("express");
 const Pedido = require("../database/pedido");
 const { Op } = require("sequelize");
