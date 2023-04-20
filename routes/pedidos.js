@@ -142,7 +142,12 @@
  *    responses:
  *       200:
  *         description: Pedido editado com sucesso
-=======
+
+*/
+
+/**
+ * @swagger
+
  * /pedidos/urgencia/{urgencia}:
  *   get:
  *     summary: Obtém um pedido pela urgência
@@ -177,7 +182,7 @@
  *                   example: Rua das Flores, 123
  *                 urgencia:
  *                   type: string
- *                   description: Urgência do pedido editado
+ *                   description: Urgência do pedido realizado
  *                   example: alta
  *                 entregadorId:
  *                   type: integer
@@ -186,48 +191,8 @@
  *       404:
  *         description: Pedido não encontrado
  *       500:
- *         description: Erro interno do servidor
- * 
- * 
-  *   delete:
- *     summary: Excluir pedido pelo ID
- *     tags: [Pedidos]
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *         required: true
- *         description: ID do pedido
- *
- *     responses:
- *       200:
- *         description: Pedido excluido
- *       404:
- *         description: Pedido não encontrado 
-
- *                   description: ID do pedido obtido
- *                   example: 1
- *                 descricao:
- *                   type: string
- *                   description: Descrição do pedido obtido
- *                   example: Pedido de pizza de calabresa
- *                 endereco_entrega:
- *                   type: string
- *                   description: Endereço de entrega do pedido obtido
- *                   example: Rua das Flores, 123
- *                 urgencia:
- *                   type: string
- *                   description: Urgência do pedido obtido
- *                   example: alta
- *                 entregadorId:
- *                   type: integer
- *                   description: ID do entregador vinculado ao pedido obtido
- *                   example: 1
- *       404:
- *         description: Não há pedidos com essa urgencia
- *       500:
- *         description: Erro interno do servidor
+ *         description: Erro interno do servidor * 
+ *                   
  */
 
 /**
