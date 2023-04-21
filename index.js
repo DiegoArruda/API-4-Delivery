@@ -4,6 +4,7 @@ const express = require("express");
 const morgan = require("morgan");
 const swaggerjsdoc = require("swagger-jsdoc");
 const swaggerui = require("swagger-ui-express");
+const swaggerDocs = require("./swagger.json");
 
 //Configuração do App
 const app = express();
@@ -17,30 +18,13 @@ authenticate(connection);
 //Definição de rotas
 const rotaEntregadores = require("./routes/entregadores");
 const rotaPedidos = require("./routes/pedidos");
-
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Api #4",
-      version: "0.1.0",
-      description: "API usada para estudos",
-      contact: {},
-    },
-    servers: [
-      {
-        url: "http://localhost:4000",
-      },
-    ],
-  },
-  apis: ["./routes/*.js"],
-};
+const router = require("./routes/entregadores");
 
 //Juntar ao app as rotas
 app.use(rotaEntregadores);
 app.use(rotaPedidos);
-const spacs = swaggerjsdoc(options);
-app.use("/api-docs", swaggerui.serve, swaggerui.setup(spacs));
+
+app.use("/api-docs", swaggerui.serve, swaggerui.setup(swaggerDocs));
 
 app.listen(4000, () => {
   // Gerar as tabelas a partir do model

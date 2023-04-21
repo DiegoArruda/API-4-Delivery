@@ -26,5 +26,4 @@ const Entregador = connection.define(
 Entregador.hasMany(Pedido);
 Pedido.belongsTo(Entregador);
 
-
 module.exports = Entregador;
